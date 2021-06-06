@@ -31,6 +31,19 @@ public class Trainee {
 	
 	public Trainee() {}
 
+	
+	
+	public Trainee(int traineeId, String name, String course, String mobileNumber) {
+		super();
+		this.traineeId = traineeId;
+		this.name = name;
+		this.course = course;
+		this.mobileNumber = mobileNumber;
+		
+	}
+
+
+
 	public Trainee(String name, String course, String mobileNumber) {
 		super();
 		this.name = name;
