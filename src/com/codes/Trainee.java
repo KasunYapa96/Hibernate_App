@@ -1,10 +1,13 @@
 package com.codes;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,13 +25,49 @@ public class Trainee {
 	@Column(name="mobile_number",length=10)
 	private String mobileNumber;
 	
+	@OneToOne(cascade= {CascadeType.ALL}) //From Cascade any change in Trainee table will be reflected in to University table
+	@JoinColumn
+	private University university;
+	
 	public Trainee() {}
+
+	
+	
+	public Trainee(int traineeId, String name, String course, String mobileNumber) {
+		super();
+		this.traineeId = traineeId;
+		this.name = name;
+		this.course = course;
+		this.mobileNumber = mobileNumber;
+		
+	}
+
+
 
 	public Trainee(String name, String course, String mobileNumber) {
 		super();
 		this.name = name;
 		this.course = course;
 		this.mobileNumber = mobileNumber;
+	}
+	
+	
+
+	public Trainee(String name, String course, String mobileNumber, University university) {
+		super();
+		this.name = name;
+		this.course = course;
+		this.mobileNumber = mobileNumber;
+		this.university = university;
+	}
+
+	
+	public University getUniversity() {
+		return university;
+	}
+
+	public void setUniversity(University university) {
+		this.university = university;
 	}
 
 	public int getTraineeId() {
@@ -63,7 +102,7 @@ public class Trainee {
 
 	@Override
 	public String toString() {
-		return traineeId+"\t"+name+"\t"+course+"\t"+mobileNumber;
+		return name+"\t"+course+"\t"+mobileNumber+"\t"+university;
 	}
 	
 

@@ -35,7 +35,7 @@ public class TraineeDAO {
 	}
 	
 	public Trainee getTraineeById(int id) {
-		SessionFactory factory=HibernateUtil.getSessionFactory(); 
+		 SessionFactory factory=HibernateUtil.getSessionFactory(); 
 		 Session session=factory.getCurrentSession();
 		 session.beginTransaction();
 		 Trainee ob=(Trainee)session.get(Trainee.class, id); //here we passing entity class and Id
@@ -44,13 +44,35 @@ public class TraineeDAO {
 		
 	}
 	
-	public void deleteTrainee(Trainee ob) {
+	public void deleteTrainee(int tno) {
 
         Session session=factory.getCurrentSession();
         session.beginTransaction();
-        session.delete(ob);
+        Trainee t=(Trainee) session.get(Trainee.class, tno);
+        
+        if(t==null) {
+        	System.out.println("record does not exist!");
+        }else session.delete(t); 	System.out.println("Employee deleted successfully");
+        
         session.getTransaction().commit();
         
+	}
+	
+	public void updateTrainee(int traineeId,String course) {
+		
+		String hql="update Trainee set course=:course where traineeId =:traineeId";
+		SessionFactory factory=HibernateUtil.getSessionFactory(); 
+		Session session=factory.getCurrentSession();
+		session.beginTransaction();
+		Query q=session.createQuery(hql);
+		q.setParameter("course", course);
+		q.setParameter("traineeId", traineeId);
+		q.executeUpdate();
+		session.getTransaction().commit();
+
+	
+		
+		
 	}
 	
 public List<Trainee> getAllTrainees(){

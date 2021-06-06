@@ -10,7 +10,7 @@ private static SessionFactory factory=null;
 	public static SessionFactory getSessionFactory(){
 		
 		if(factory==null) {
-		 factory=new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Trainee.class).buildSessionFactory();
+		 factory=new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Trainee.class).addAnnotatedClass(University.class).buildSessionFactory();
 		}
 		return factory;
 
