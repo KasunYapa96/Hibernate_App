@@ -44,11 +44,16 @@ public class TraineeDAO {
 		
 	}
 	
-	public void deleteTrainee(Trainee ob) {
+	public void deleteTrainee(int tno) {
 
         Session session=factory.getCurrentSession();
         session.beginTransaction();
-        session.delete(ob);
+        Trainee t=(Trainee) session.get(Trainee.class, tno);
+        
+        if(t==null) {
+        	System.out.println("record does not exist!");
+        }else session.delete(t); 	System.out.println("Employee deleted successfully");
+        
         session.getTransaction().commit();
         
 	}

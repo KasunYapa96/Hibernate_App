@@ -17,18 +17,44 @@ public class Main {
 		BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
 		TraineeDAO dao=new TraineeDAO();
 		
-		Trainee tr=dao.getTraineeById(1);
-		System.out.println(tr);
+//		University u1=new University("NSBM", "Homagama");
+//		Trainee tr1=new Trainee("Calana", "CS", "0777",u1 );
+//		
+//		University u2=new University("NSBM", "Homagama");
+//		Trainee tr2=new Trainee("Akin", "CS", "0777",u2 );
+//		
+//		University u3=new University("NSBM", "Homagama");
+//		Trainee tr3=new Trainee("Yasas", "CS", "0777",u3 );
+//		
+//		
+//		dao.addTrainee(tr1);
+//		dao.addTrainee(tr2);
+//		dao.addTrainee(tr3);
 		
+//		dao.deleteTrainee(23);
+//		
 		List<Trainee> list=dao.getAllTrainees();
-		System.out.println("***************************************");
 		for(Trainee t:list) {
 			
 			System.out.println(t);
 			
 		}
+		
+//		List<Trainee> list=dao.getAllTrainees();
+//		System.out.println("***************************************");
+//		for(Trainee t:list) {
+//			
+//			System.out.println(t);
+//			
+//		}
 	
 		/*
+		SQL> set line 1000;
+		SQL> select * from University;
+		 
+		 Trainee tr=dao.getTraineeById(1);
+		System.out.println(tr);
+		
 		SessionFactory factory=new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Trainee.class).buildSessionFactory();
 		Session session=factory.getCurrentSession();
 		String hql="from Trainee";
